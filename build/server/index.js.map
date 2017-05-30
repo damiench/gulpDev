@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js","utils/log.js"],"names":["hello","name","console","log"],"mappings":";;AAAA;;;;;;AAGA,mBAAM,MAAN;;;;;;kBCHwBA;AAAT,SAASA,KAAT,CAAeC,IAAf,EAAqB;AACnCC,SAAQC,GAAR,CAAYF,IAAZ;AACA","file":"index.js","sourcesContent":["import hello from './utils/log.js'\n\n\nhello('Dima');","export default function hello(name) {\n\tconsole.log(name);\n}"]}

@@ -1,0 +1,42 @@
+{
+  "name": "testpgnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server/index.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "rimraf": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "cross-env": "^5.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-util": "^3.0.8",
+    "node6": "^1.0.0",
+    "npm-run-all": "^4.0.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "cross-env NODE_ENV=development npm-run-all clear build server:watch",
+    "clear": "rimraf build/*",
+    "build": "gulp build-server",
+    "build:watch": "gulp watch",
+    "server": "node build/server/index.js",
+    "server:watch": "nodemon build/server/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
