@@ -4,4 +4,4 @@ nodemon
 gulp 
 rimraf
 
-for start user npm run start:dev
+for start use npm run start:dev

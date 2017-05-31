@@ -4,12 +4,17 @@ import autoprefixer from 'gulp-autoprefixer';
 import sourcemaps from 'gulp-sourcemaps';
 import babelify from 'babelify';
 import concat from 'gulp-concat';
+import babel from 'gulp-babel';
 import browserify from 'browserify';
-var source = require('vinyl-source-stream');
-var gutil = require('gulp-util');
+import source from 'vinyl-source-stream';
+import gutil from 'gulp-util';
+import minify from 'gulp-minify-css';
+import merge from 'merge-stream';
 const dirs = {
 	src: './src',
-	build: './build'
+	dest: './build',
+	serverDest: './build/server',
+	clientDest: './build/client' 
 };
 const dependencies = [
 	'react',
@@ -18,19 +23,32 @@ const dependencies = [
 
 var scriptsCount = 0;
 
+// styles tasks 
+
 const sassPaths = {
-	src: `${dirs.src}/client/style/**/*.scss`, 
-	dest: `${dirs.build}/client/style`
+	src: `${dirs.src}/client/style/`, 
+	dest: `${dirs.clientDest}/style`
 };
 
+
+// |styles done| TODO: attach them in one task 
+
 gulp.task('styles', () => {
-	return gulp.src(sassPaths.src)
-		.pipe(sourcemaps.init())
-		.pipe(sass.sync().on('error', () => { console.log('error on sass sync')}))
-		.pipe(autoprefixer())
-		.pipe(sourcemaps.write('.'))
+	let sassStream = gulp.src(sassPaths.src + '**/*.scss')
+		.pipe(sass())
+		.pipe(concat('scss-files.scss'))
+
+	let cssStream = gulp.src(sassPaths.src + '**/*.css')
+		.pipe(concat('css-files.css'))
+
+	return merge(sassStream, cssStream)
+		.pipe(concat('styles.css'))
+		.pipe(minify())
 		.pipe(gulp.dest(sassPaths.dest))
 });
+
+
+// end style tasks
 
 gulp.task('scripts', () => {
     bundleApp(false);
@@ -44,29 +62,14 @@ gulp.task('watch', () => {
 	gulp.watch(['./src/client/**/*.js'], ['scripts', 'copyHTML']);
 });
 
+gulp.task('compile-server', () => {
+	return gulp.src('src/server/**/*.js')
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest(`${dirs.serverDest}`))
+})
 
-// gulp.task('compile-client', () => {
-// 	return gulp.src('src/client/**/*.js')
-// 		.pipe(sourcemaps.init())
-// 		.pipe(babel({
-// 			presets: ['es2015', 'react']
-// 		}))
-// 		.pipe(sourcemaps.write('.'))
-// 		.pipe(gulp.dest(`${dirs.build}/client`))
-// });
-
-// gulp.task('compile-server', () => {
-// 	return gulp.src('src/server/**/*.js')
-// 		.pipe(babel({
-// 			presets: ['es2015']
-// 		}))
-// 		.pipe(gulp.dest(`${dirs.build}/server`))
-// })
-
-gulp.task('copyHTML', () => {
-	gulp.src(`${dirs.src}/client/index.html`)
-		.pipe(gulp.dest(`${dirs.build}/client/`));
-});
 
 gulp.task('default', ['scripts','watch', 'copyHTML']);
 
@@ -86,7 +89,7 @@ function bundleApp(isProduction) {
 			.bundle()
 			.on('error', gutil.log)
 			.pipe(source('vendors.js'))
-			.pipe(gulp.dest(`${dirs.build}/client/lib`));
+			.pipe(gulp.dest(`${dirs.clientDest}/lib`));
   	}
 
   	if (!isProduction) {
@@ -100,6 +103,6 @@ function bundleApp(isProduction) {
 	    .bundle()
 	    .on('error',gutil.log)
 	    .pipe(source('bundle.js'))
-	    .pipe(gulp.dest(`${dirs.build}/client/`));
+	    .pipe(gulp.dest(`${dirs.clientDest}`));
 
 }

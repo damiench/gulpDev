@@ -1,0 +1,7 @@
+.text-center {
+	color: blue;
+}
+
+.text-center:hover {
+	color: #ccc;
+}
