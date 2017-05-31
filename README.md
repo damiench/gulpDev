@@ -4,4 +4,6 @@ nodemon
 gulp 
 rimraf
 
-for start use npm run start:dev
+for start use 
+-$ npm install
+-$ npm run start:dev 

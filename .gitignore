@@ -1,2 +1,9 @@
-.node_modules/
-build/
+#Dependencies and build folder
+node_modules
+build
+
+# Misc excludes
+.idea
+*.log
+*.swp
+*.map

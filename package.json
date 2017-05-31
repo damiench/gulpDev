@@ -6,9 +6,13 @@
   "dependencies": {
     "express": "^4.15.3",
     "gulp": "^3.9.1",
+    "lodash": "^4.17.4",
     "path": "^0.12.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0",
     "rimraf": "^2.6.1"
   },
   "devDependencies": {
@@ -22,7 +26,9 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.1",
+    "gulp-if-else": "^1.0.3",
     "gulp-nodemon": "^2.2.1",
+    "gulp-react": "^3.1.0",
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-util": "^3.0.8",
@@ -33,10 +39,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "cross-env NODE_ENV=development npm-run-all clear build server:watch",
+    "start:dev": "cross-env NODE_ENV=development npm-run-all clear build:dev",
     "clear": "rimraf build/*",
-    "build": "gulp build-server",
-    "build:watch": "gulp watch",
+    "build:dev": "gulp",
     "server": "node build/server/index.js",
     "server:watch": "nodemon build/server/index.js"
   },
