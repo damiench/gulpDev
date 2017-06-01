@@ -4,6 +4,9 @@
 	},
 	"postgresql": {
 		"port": 5432,
-		"secret": "c0969e8056f99d20167595ef7cf495"
+		"host": "localhost",
+		"user": "posgres",
+		"password": "c0969e8056f99d20167595ef7cf495",
+		"database": "tshrit"
 	}
 }

@@ -7,7 +7,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (<div className='app'> 
-				hello, {this.props.name}. this is first component
+				hello. this is first component
 				<Switch>
 					<Route exact path={'/'} component={Home}/>
 					<Route path={'/orders'} component={Orders} />

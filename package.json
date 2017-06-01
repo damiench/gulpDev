@@ -7,6 +7,7 @@
     "express": "^4.15.3",
     "gulp": "^3.9.1",
     "lodash": "^4.17.4",
+    "material-ui": "^0.18.1",
     "path": "^0.12.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -39,11 +40,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "cross-env NODE_ENV=development npm-run-all clear build:dev",
+    "start": "cross-env NODE_ENV=development npm-run-all clear build",
     "clear": "rimraf build/*",
-    "build:dev": "gulp",
-    "server": "node build/server/index.js",
-    "server:watch": "nodemon build/server/index.js"
+    "build": "gulp"
   },
   "author": "",
   "license": "ISC"

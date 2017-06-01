@@ -7,6 +7,6 @@ window._ = lodash;
 
 ReactDOM.render((
 	<BrowserRouter>
-		<App name='Dima'/>
+		<App/>
 	</BrowserRouter>
 ), document.getElementById('root'));
