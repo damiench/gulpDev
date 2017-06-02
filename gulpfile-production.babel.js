@@ -1,15 +1,15 @@
 import gulp from 'gulp';
 import sass from 'gulp-sass';
 import autoprefixer from 'gulp-autoprefixer';
-import sourcemaps from 'gulp-sourcemaps';
 import babelify from 'babelify';
-import nodemon from 'gulp-nodemon';
 import concat from 'gulp-concat';
 import babel from 'gulp-babel';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
+import minify from 'gulp-minify-css';
 import merge from 'merge-stream';
-let browserSync =  require('browser-sync').create();
+import uglify from 'gulp-uglify';
+import buffer from 'gulp-buffer';
 
 const dirs = {
 	src: './src',
@@ -25,10 +25,9 @@ const sassPaths = {
 
 gulp.task('styles', () => {
 	let sassStream = gulp.src(sassPaths.src + '**/*.scss')
-		.pipe(sourcemaps.init())
 		.pipe(autoprefixer())
 		.pipe(sass())
-		.pipe(sourcemaps.write())
+		.pipe(minify())
 		.pipe(concat('scss-files.scss'))
 
 	let cssStream = gulp.src(sassPaths.src + '**/*.css')
@@ -36,15 +35,15 @@ gulp.task('styles', () => {
 
 	return merge(sassStream, cssStream)
 		.pipe(concat('styles.css'))
+		.pipe(minify())
 		.pipe(gulp.dest(sassPaths.dest))
-		.pipe(browserSync.reload({stream:true}));
 });
 
 gulp.task('scripts', () => {
     return browserify({
     		entries: `${dirs.src}/client/index.jsx`, 
     		extensions: ['.jsx', '.js'], 
-    		debug: true
+    		debug: false
     	})
         .transform('babelify', {presets: ['es2015', 'react']})
         .bundle()
@@ -52,15 +51,10 @@ gulp.task('scripts', () => {
             console.error(err.toString());
             
         })
-        .pipe(source('bundle.js'))  
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe(uglify())     
         .pipe(gulp.dest(`${dirs.clientDest}`))
-        .pipe(browserSync.reload({stream:true}));
-});
-
-gulp.task('watch', ['scripts', 'styles', 'compile-server'], () => {
-	gulp.watch(['./src/client/**/*.+(js|jsx)'], ['scripts']);
-	gulp.watch(['./src/client/**/*.+(css|scss)'], ['styles']);
-	gulp.watch(['./src/server/**/*.js'], ['compile-server']);
 });
 
 gulp.task('compile-server', () => {
@@ -69,24 +63,6 @@ gulp.task('compile-server', () => {
 			presets: ['es2015']
 		}).on('error', (err) => { console.error(err); }))
 		.pipe(gulp.dest(`${dirs.serverDest}`))
-		.pipe(browserSync.reload({stream:true}));
-});
-
-gulp.task('develop', ['watch'], () => {
-	var stream = nodemon({
-		script: `${dirs.serverDest}/index.js`,
-		ext: 'js',
-		ignore: ['node_modules/'],
-		watch: dirs.serverDest
-	})
-	stream
-		.on('restart', () => {
-			console.log('nodemon restarting')
-		})
-		.on('crash', () => {
-			console.error('application has crashed!\n');
-			stream.emit('restart', 5);
-		})
 });
 
 gulp.task('copyHTML', () => {
@@ -94,13 +70,4 @@ gulp.task('copyHTML', () => {
  		.pipe(gulp.dest(`${dirs.clientDest}/`));
 });
 
-gulp.task('browserSync', () => {
-	browserSync.init({
-		server: {
-			baseDir: './build/client'
-		},
-		port: 3001
-	});
-});
-
-gulp.task('default', ['develop', 'copyHTML', 'browserSync']);
+gulp.task('default', ['styles', 'scripts', 'compile-server', 'copyHTML'])
