@@ -1,16 +1,19 @@
-import express from 'express';
-import path from 'path';
 import settings from '../../settings.json';
-const server = express();
+import express from 'express';
+import socketHandler from './socket-manage/socket-handler';
+import path from 'path';
+const app = express();
 
-server.use(express.static(path.join(__dirname, '../../build/client')));
+app.use(express.static(path.join(__dirname, '../../build/client')));
 
-server.get('*', function(req, res) {
+app.get('*', (req, res) => {
 	console.log('get')
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-
-server.listen(settings.application.port, function() {
+const server = app.listen(settings.application.port, () => {
 	console.log(`server started on port ${settings.application.port}`);
 });
+
+
+socketHandler(server);

@@ -15,7 +15,8 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "socket.io": "^2.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -29,6 +30,7 @@
     "gulp-autoprefixer": "^4.0.0",
     "gulp-babel": "^6.1.2",
     "gulp-buffer": "0.0.2",
+    "gulp-changed": "^3.1.0",
     "gulp-concat": "^2.6.1",
     "gulp-if-else": "^1.0.3",
     "gulp-minify-css": "^1.2.4",

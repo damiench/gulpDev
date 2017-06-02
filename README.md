@@ -1,4 +1,4 @@
-#sample Node.js application
+# Sample Node.js application
 
 Dev dependencies:  
  - nodemon 
@@ -6,7 +6,7 @@ Dev dependencies:
  - rimraf
 
 ### Installation 
-Project requres [Node.js](https://nodejs.org/) v6+ to run
+Project requires [Node.js](https://nodejs.org/) v6+ to run.
 Also install [Gulp](http://gulpjs.com/) globally.
 ```sh
 $ git clone https://github.com/damiench/gulpDev.git
@@ -17,7 +17,7 @@ For production:
 ```sh
 $ npm start
 ```
-or, for development
+or for development
 
 ```sh
 $ npm run start:dev

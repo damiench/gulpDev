@@ -1,11 +1,16 @@
 {
 	"application": {
-		"port": 3000
+		"host": "localhost",
+		"port": 3000,
+		"apiRoutes": {
+			"auth": "/api/v1",
+			"db": "/api/v2"
+		}
 	},
 	"postgresql": {
-		"port": 5432,
+		"port": 5433,
 		"host": "localhost",
-		"user": "posgres",
+		"user": "postgres",
 		"password": "c0969e8056f99d20167595ef7cf495",
 		"database": "tshrit"
 	}

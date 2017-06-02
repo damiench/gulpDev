@@ -4,7 +4,6 @@ import Home from './Home/Home';
 import Orders from './Orders/Orders';
 
 export default class App extends React.Component {
-
 	render() {
 		return (<div className='app'> 
 				hello. this is first component

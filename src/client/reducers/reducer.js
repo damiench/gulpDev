@@ -1,16 +1,10 @@
 import { combineReducers } from 'redux';
-
 import { ACTION_TYPE } from '../actions/actions';
 
 const initialState = {
 	authorized: false,
 	orders: [] 
 };
-
-/* 
-	write in docs about ** ADD_ORDERS action ** that you need to pass actions.value as an Array to perform spread,
-	and not to write one more action handler for adding one order as object
-*/
 
 const authorizing = (state = false, action) => {
 	switch (action.type) {

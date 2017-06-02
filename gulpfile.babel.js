@@ -9,6 +9,7 @@ import babel from 'gulp-babel';
 import browserify from 'browserify';
 import source from 'vinyl-source-stream';
 import merge from 'merge-stream';
+import changed from 'gulp-changed';
 let browserSync =  require('browser-sync').create();
 
 const dirs = {
@@ -65,6 +66,7 @@ gulp.task('watch', ['scripts', 'styles', 'compile-server'], () => {
 
 gulp.task('compile-server', () => {
 	return gulp.src('src/server/**/*.js')
+		.pipe(changed(`${dirs.serverDest}`))
 		.pipe(babel({
 			presets: ['es2015']
 		}).on('error', (err) => { console.error(err); }))
@@ -96,11 +98,9 @@ gulp.task('copyHTML', () => {
 
 gulp.task('browserSync', () => {
 	browserSync.init({
-		server: {
-			baseDir: './build/client'
-		},
+		proxy: 'http://localhost:3000/',
 		port: 3001
 	});
 });
 
-gulp.task('default', ['develop', 'copyHTML', 'browserSync']);
+gulp.task('default', ['browserSync', 'develop', 'copyHTML']);

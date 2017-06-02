@@ -1,5 +1,8 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { orderMiddleware } from './socket-manage/socket-init';
 import TShirtApp from './reducers/reducer';
-let store = createStore(TShirtApp);
+
+const createStoreWithMiddleware = applyMiddleware(orderMiddleware)(createStore);
+const store = createStoreWithMiddleware(TShirtApp);
 
 export default store;
