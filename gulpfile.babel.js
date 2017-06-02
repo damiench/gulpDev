@@ -12,6 +12,7 @@ import source from 'vinyl-source-stream';
 import minify from 'gulp-minify-css';
 import react from 'gulp-react';
 import merge from 'merge-stream';
+let browserSync =  require('browser-sync').create();
 
 //main directories to use
 const dirs = {
@@ -43,6 +44,7 @@ gulp.task('styles', () => {
 		.pipe(minify())
 		.pipe(ifElse(process.env.NODE_ENV === 'development',sourcemaps.write))
 		.pipe(gulp.dest(sassPaths.dest))
+		.pipe(browserSync.reload({stream:true}));
 });
 // end style tasks
 
@@ -52,12 +54,13 @@ gulp.task('scripts', () => {
     return browserify({entries: `${dirs.src}/client/index.jsx`, extensions: ['.jsx'], debug: true })
         .transform('babelify', {presets: ['es2015', 'react']})
         .bundle()
-        .on('error', function (err) {
+        .on('error', (err) => {
             console.error(err.toString());
-            this.emit("end");
+            
         })
         .pipe(source('bundle.js'))  
-        .pipe(gulp.dest(`${dirs.clientDest}`));
+        .pipe(gulp.dest(`${dirs.clientDest}`))
+        .pipe(browserSync.reload({stream:true}));
 });
 
 //end scripts tasks
@@ -78,14 +81,15 @@ gulp.task('compile-server', () => {
 	return gulp.src('src/server/**/*.js')
 		.pipe(babel({
 			presets: ['es2015']
-		}).on('error', function() { console.error('error'); }))
+		}).on('error', (err) => { console.error(err); }))
 		.pipe(gulp.dest(`${dirs.serverDest}`))
+		.pipe(browserSync.reload({stream:true}));
 });
 
 //end task server build
 
 // develop task 
-gulp.task('develop', ['watch'], function() {
+gulp.task('develop', ['watch'], () => {
 	var stream = nodemon({
 		script: `${dirs.serverDest}/index.js`,
 		ext: 'js',
@@ -93,10 +97,10 @@ gulp.task('develop', ['watch'], function() {
 		watch: dirs.serverDest
 	})
 	stream
-		.on('restart', function() {
+		.on('restart', () => {
 			console.log('nodemon restarting')
 		})
-		.on('crash', function() {
+		.on('crash', () => {
 			console.error('application has crashed!\n');
 			stream.emit('restart', 5);
 		})
@@ -110,8 +114,18 @@ gulp.task('copyHTML', () => {
 });
 //end html
 
+// only dev task 
+gulp.task('browserSync', () => {
+	browserSync.init({
+		server: {
+			baseDir: './build/client'
+		},
+		port: 3001
+	});
+});
+
 
 // type 'gulp' to run project
-gulp.task('default', ['develop', 'copyHTML']);
+gulp.task('default', ['develop', 'copyHTML', 'browserSync']);
 
 

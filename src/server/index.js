@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-
+import settings from '../../settings.json';
 const server = express();
 
 server.use(express.static(path.join(__dirname, '../../build/client')));
@@ -10,6 +10,7 @@ server.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-server.listen(3000, function() {
-	console.log(' server started on port ', 3000);
+
+server.listen(settings.application.port, function() {
+	console.log(`server started on port ${settings.application.port}`);
 });
