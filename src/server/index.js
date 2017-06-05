@@ -7,7 +7,6 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../../dist')));
 
 app.get('*', (req, res) => {
-	console.log()
 	res.sendFile(path.join(__dirname, process.env.NODE_ENV == 'production' ? '../../dist/index.html' : '../client/index.html'));
 });
 

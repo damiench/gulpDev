@@ -3,8 +3,10 @@ node_modules
 build
 dist
 
+
 # Misc excludes
 .idea
 *.log
 *.swp
 *.map
+package-lock.json

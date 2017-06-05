@@ -6,8 +6,8 @@ import autoprefixer from 'autoprefixer';
 import path from 'path';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production'),
-  __DEV__: false
+	'process.env.NODE_ENV': JSON.stringify('production'),
+	__DEV__: false
 };
 
 export default {
@@ -20,7 +20,7 @@ export default {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
-    	filename: '[name].[chunkhash].js'
+		filename: '[name].[chunkhash].js'
 	},
 	plugins: [
 		new WebpackMd5Hash(),
@@ -30,38 +30,38 @@ export default {
     	new ExtractTextPlugin('[name].[contenthash].css'),
 
     	new HtmlWebpackPlugin({
-			template: 'src/client/index.html',
+		template: 'src/client/index.html',
 			// favicon: 'src/favicon.ico',
-			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeRedundantAttributes: true,
-				useShortDoctype: true,
-				removeEmptyAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				keepClosingSlash: true,
-				minifyJS: true,
-				minifyCSS: true,
-				minifyURLs: true
-			},
-			inject: true,
+		minify: {
+			removeComments: true,
+			collapseWhitespace: true,
+			removeRedundantAttributes: true,
+			useShortDoctype: true,
+			removeEmptyAttributes: true,
+			removeStyleLinkTypeAttributes: true,
+			keepClosingSlash: true,
+			minifyJS: true,
+			minifyCSS: true,
+			minifyURLs: true
+		},
+		inject: true,
 			// Note that you can add custom options here if you need to handle other custom logic in index.html
 			// To track JavaScript errors via TrackJS, sign up for a free trial at TrackJS.com and enter your token below.
-			trackJSToken: ''
+		trackJSToken: ''
 	    }),
 	     // Minify JS
     	new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
     	new webpack.LoaderOptionsPlugin({
-			minimize: true,
-			debug: false,
-			noInfo: true, // set to false to see a list of every file being bundled.
-			options: {
-				sassLoader: {
-					includePaths: [path.resolve(__dirname, 'src/client', 'scss')]
-				},
-				context: '/',
-				postcss: () => [autoprefixer],
-			}
+		minimize: true,
+		debug: false,
+		noInfo: true, // set to false to see a list of every file being bundled.
+		options: {
+			sassLoader: {
+				includePaths: [path.resolve(__dirname, 'src/client', 'scss')]
+			},
+			context: '/',
+			postcss: () => [autoprefixer],
+		}
 	    })
 	],
 	module: {
@@ -78,4 +78,4 @@ export default {
 		]
 	}
 
-}
+};

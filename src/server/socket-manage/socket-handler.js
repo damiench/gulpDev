@@ -9,10 +9,10 @@ export default (server) => {
 
 		socketDBHandler(socket);
 		socketAuthHandler(socket);
-		
+
 		socket.on('disconnect', () => {
-			console.log('user disconnect')
+			console.log('user disconnect');
 		});
-	}); 
-	
-} 
+	});
+
+};

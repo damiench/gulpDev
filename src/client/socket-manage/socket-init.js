@@ -9,11 +9,11 @@ export const orderMiddleware = (store) => {
 		const result = next(action);
 
 		if (action.type === ACTION_TYPE.SEND_ORDERS)
-			socket.emit('send orders', store.getState().orders)
+			socket.emit('send orders', store.getState().orders);
 
 		return result;
-	} 
-}
+	};
+};
 
 export const socketInit =  (store) => {
  	socket = io.connect(`${location.protocol}//${settings.application.host}:${settings.application.port}`);
@@ -21,4 +21,4 @@ export const socketInit =  (store) => {
 	socket.on('get orders', data => {
 		store.dispatch(addOrders(data));
 	});
-}
+};

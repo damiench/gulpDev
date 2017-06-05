@@ -8,4 +8,4 @@ export const selectOrders = (count = 1) => {
 		console.log('result orders: ', res);
 		return res;
 	});
-}
+};

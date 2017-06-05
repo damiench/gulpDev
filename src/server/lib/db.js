@@ -10,7 +10,7 @@ const config = {
 	port: 				settingsPG.port,
 	max: 				10,
 	idleTimeoutMillis:  30000
-}
+};
 
 
 const pool = new pg.Pool(config);
