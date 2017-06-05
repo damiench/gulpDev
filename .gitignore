@@ -1,6 +1,7 @@
 #Dependencies and build folder
 node_modules
 build
+dist
 
 # Misc excludes
 .idea

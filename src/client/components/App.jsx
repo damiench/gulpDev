@@ -6,7 +6,7 @@ import Orders from './Orders/Orders';
 export default class App extends React.Component {
 	render() {
 		return (<div className='app'> 
-				hello. this is first component
+				hello. this is first componentsadd
 				<Switch>
 					<Route exact path={'/'} component={Home}/>
 					<Route path={'/orders'} component={Orders} />

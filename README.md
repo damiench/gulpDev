@@ -7,7 +7,6 @@ Dev dependencies:
 
 ### Installation 
 Project requires [Node.js](https://nodejs.org/) v6+ to run.
-Also install [Gulp](http://gulpjs.com/) globally.
 ```sh
 $ git clone https://github.com/damiench/gulpDev.git
 $ cd gulpDev

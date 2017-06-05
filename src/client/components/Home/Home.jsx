@@ -6,6 +6,7 @@ import store from '../../store';
 export default class Home extends React.Component {
 	componentDidMount() {
 		console.log(store.getState());
+		console.log();
 		
 		store.dispatch(addOrders({ color: 'white', count: 10, slaves: 'long' }));
 
@@ -18,7 +19,7 @@ export default class Home extends React.Component {
 		return(
 			<div>
 				Home
-				<Link to='/orders'>to orders</Link>
+				<Link to='/orders'>to orders fast</Link>
 			</div>
 		);
 	}

@@ -7,7 +7,7 @@ import store from './store';
 import { socketInit } from './socket-manage/socket-init';
 window._ = lodash;
 
-
+import './style/root.scss';
 
 socketInit(store);
 
