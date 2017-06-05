@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 import webpack from 'webpack';
 
-export default (env = defaultEnv) => ({
+export default () => ({
 	resolve: {
 		extensions: [ '*', '.js', '.jsx', '.json']
 	},
@@ -97,6 +97,6 @@ export default (env = defaultEnv) => ({
 		]
 	},
 	devServer: {
-		hot: env.dev,
+		hot: true,
 	},
 });
