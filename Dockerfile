@@ -1,9 +1,11 @@
-FROM node:6.10.0
+FROM node:6.10.3
 RUN mkdir -p /usr/src/testPGNode
 WORKDIR /usr/src/testPGNode
 
 COPY . /usr/src/testPGNode
+# RUN npm install -g eslint-watch webpack nodemon rimraf
 RUN npm install
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
