@@ -1,5 +1,5 @@
 import pg from 'pg';
-import settings from '../../../settings.json';
+import settings from '../../../settings-db.json';
 const settingsPG = settings.postgresql;
 
 const config = {

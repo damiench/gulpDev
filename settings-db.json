@@ -1,0 +1,9 @@
+{
+    "postgresql": {
+        "port": 5433,
+        "host": "localhost",
+        "user": "postgres",
+        "database": "tshrit",
+        "password": "c0969e8056f99d20167595ef7cf495"
+    }
+}

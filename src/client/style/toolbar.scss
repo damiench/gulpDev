@@ -1,17 +1,10 @@
 .toolbar-left {
-    margin-top: 50px;
+    margin-top: 100px;
     height: 100vh;
-    max-height: calc(100vh - 50px);
+    // minus height of header and top-bar
+    max-height: calc(100vh - 100px);
+    overflow-y: scroll;
     width: 20%;
-
-    .affix-top {
-        position: fixed;
-        height: 60px;
-        width: 20%;
-        font-size: 26px;
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-    }
 }
 
 
@@ -36,9 +29,28 @@
         &.title {
             font-weight: bold;
         }
+    }
+}
 
-        &.status {
-            margin-left: 15%;
-        }
+.top-bar {
+    margin-top: 50px;
+    max-height: 50px;
+    color: #ffffff;
+    background-color: #bdbcbc !important;
+
+    .text {
+        margin: 15px;
+        font-size: 16px;
+    }
+
+    .form-control {
+        color: rgb(37, 37, 37) !important;
+        margin: 12px;
+        max-width: 100px;
+        max-height: 25px;
+        padding: 0px;
+    }
+    select {
+        float:left;
     }
 }

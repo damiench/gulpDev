@@ -1,10 +1,10 @@
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route, Link } from 'react-router-dom';
 import PrivateRoute from './Routes/PrivateRoute';
+import Header from '../containers/Header';
 import Orders from './Orders/Orders';
 import Home from './Home/Home';
 import Auth from './Auth/Auth';
-import Header from '../containers/Header';
 import React from 'react';
 
 //styles
@@ -18,8 +18,8 @@ export default class App extends React.Component {
 			<div className='app'>
 				<Header />
 				<Switch>
-					<PrivateRoute exact path={'/'} component={Home} />
-					<PrivateRoute exact path={'/orders'} component={Orders} />
+					<Route exact path={'/'} component={Home} />
+					<Route exact path={'/orders'} component={Orders} />
 					<Route exact path={'/login'} component={Auth} />
 				</Switch>
 			</div>

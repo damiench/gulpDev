@@ -6,12 +6,5 @@
 			"auth": "/api/v1",
 			"db": "/api/v2"
 		}
-	},
-	"postgresql": {
-		"port": 5433,
-		"host": "localhost",
-		"user": "postgres",
-		"password": "c0969e8056f99d20167595ef7cf495",
-		"database": "tshrit"
 	}
 }
