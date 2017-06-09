@@ -1,0 +1,9 @@
+.picture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    &.logo { background-image: url('../../public/logo-placeholder.jpg'); }
+    &.tshirt { background-image: url('../../public/tshirt.png'); }
+
+}

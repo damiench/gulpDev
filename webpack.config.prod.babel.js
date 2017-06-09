@@ -77,6 +77,7 @@ export default {
 							presets: [
 								['es2015', { modules: false }],
 								'react',
+								'stage-2'
 							],
 							plugins: ['react-hot-loader/babel'],
 						}
@@ -87,6 +88,10 @@ export default {
 				use: [
 					{ loader: 'file-loader?name=[name].[ext]' }
 				]
+			},
+			{
+			   	test: /\.css$/,
+			   	loader: 'style-loader!css-loader'
 			},
 			{
 				test: /\.ico$/,

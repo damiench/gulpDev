@@ -1,7 +1,7 @@
 {
 	"application": {
 		"host": "localhost",
-		"port": 3000,
+		"port": 3002,
 		"apiRoutes": {
 			"auth": "/api/v1",
 			"db": "/api/v2"

@@ -7,14 +7,15 @@ export default () => ({
 	resolve: {
 		extensions: [ '*', '.js', '.jsx', '.json']
 	},
-	entry: [
+	entry:{ bundle: [
 		'react-hot-loader/patch',
 		'webpack-dev-server/client?http://localhost:8080',
 		path.join(__dirname, 'src/client/index.jsx'),
-	],
+	]},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
+		publicPath: '/',
+		filename: '[name].js',
 	},
 	devtool: 'eval-source-map',
 	target: 'web',
@@ -22,7 +23,6 @@ export default () => ({
 		new HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new HtmlWebpackPlugin({
-			filename: 'index.html',
 			template: './src/client/index.html',
 			minify: {
 				removeComments: true,
@@ -38,6 +38,10 @@ export default () => ({
 				use: [
 					{ loader: 'file-loader?name=[name].[ext]' }
 				]
+			},
+			{
+			   	test: /\.css$/,
+			   	loader: 'style-loader!css-loader'
 			},
 			{
 				test: /\.ico$/,
@@ -89,6 +93,7 @@ export default () => ({
 							presets: [
 								['es2015', { modules: false }],
 								'react',
+								'stage-2'
 							],
 							plugins: ['react-hot-loader/babel'],
 						}
@@ -98,5 +103,6 @@ export default () => ({
 	},
 	devServer: {
 		hot: true,
+		historyApiFallback: true
 	},
 });

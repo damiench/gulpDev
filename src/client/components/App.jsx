@@ -1,16 +1,28 @@
-import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route, Link } from 'react-router-dom';
-import Home from './Home/Home';
+import PrivateRoute from './Routes/PrivateRoute';
 import Orders from './Orders/Orders';
+import Home from './Home/Home';
+import Auth from './Auth/Auth';
+import Header from '../containers/Header';
+import React from 'react';
+
+//styles
+import '../style/root.scss';
+import '../style/images.scss';
 
 export default class App extends React.Component {
 	render() {
-		return (<div className='app'> 
-				hello. this is first componentsadd
+		//we need theme provider to use material-ui components in app http://www.material-ui.com/#/get-started/usage
+		return (<MuiThemeProvider>
+			<div className='app'>
+				<Header />
 				<Switch>
-					<Route exact path={'/'} component={Home}/>
-					<Route path={'/orders'} component={Orders} />
+					<PrivateRoute exact path={'/'} component={Home} />
+					<PrivateRoute exact path={'/orders'} component={Orders} />
+					<Route exact path={'/login'} component={Auth} />
 				</Switch>
-			</div>);
+			</div>
+		</MuiThemeProvider>);
 	}
 }

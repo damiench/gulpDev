@@ -1,5 +1,5 @@
 export default (socket) => {
-	socket.on('log in', (data) => {
-		console.log(data);
+	socket.on('sign in', (userData) => {
+		console.log(userData);
 	});
 };
