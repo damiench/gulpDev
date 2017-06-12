@@ -11,4 +11,4 @@ export const time = (date) => {
 	return (_date.getMonth() + 1) + '/'
 		+ _date.getDate() + '/'
 		+ _date.getFullYear();
-}
+};

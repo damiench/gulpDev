@@ -1,8 +1,14 @@
-// rewrite to actualy use tocken and check whether it valid or not
+import { STAGES } from './constants';
 
 const state = {
 	authorized: window.localStorage.getItem('authToken'),
-	orders: []
+	orders: [],
+	items: [],
+	endpoints: [],
+	selectedItems: [],
+	selectedOrder: [],
+	vendors: [],
+	stage: STAGES.VIEW
 };
 
 export default state;

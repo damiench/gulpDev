@@ -2,6 +2,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 
 export default () => ({
 	resolve: {
@@ -21,6 +22,18 @@ export default () => ({
 	target: 'web',
 	plugins: [
 		new HotModuleReplacementPlugin(),
+		new webpack.LoaderOptionsPlugin({
+			minimize: false,
+			debug: true,
+			noInfo: false, // set to false to see a list of every file being bundled.
+			options: {
+				sassLoader: {
+					includePaths: [path.resolve(__dirname, 'src/client', 'scss')]
+				},
+				context: '/',
+				postcss: () => [autoprefixer],
+			}
+		}),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new HtmlWebpackPlugin({
 			template: './src/client/index.html',

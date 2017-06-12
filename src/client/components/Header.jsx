@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default class Header extends React.Component {
-    renderHeader() {
+    get title() {
         return (<div className='col-md-3 row' >
                 <div className='picture tshirt pull-left'/>
                 <div className='vertical-line pull-left'/>
@@ -12,7 +12,7 @@ export default class Header extends React.Component {
             </div>);
     }
 
-    renderBody() {
+    get body() {
         return (<div className='col-md-5'>
             <div className='text pull-left status'>
                 {/* replace with actual checking of user */}
@@ -27,8 +27,8 @@ export default class Header extends React.Component {
         return (
             <nav className='header navbar navbar-default navbar-fixed-top'>
                 <div className='container-fluid no-padding no-margin row'>
-                    {this.renderHeader()}
-                    {this.renderBody()}
+                    {this.title}
+                    {this.body}
                 </div>
             </nav>
         )

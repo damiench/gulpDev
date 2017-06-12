@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import '../../style/order.scss';
 
 export default class SidebarItems extends React.Component {
-
     renderItem(item) {
         return <Order order={item} key={item.id}/>
     }

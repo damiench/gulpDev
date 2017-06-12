@@ -7,7 +7,8 @@ import lodash from 'lodash';
 import store from './store';
 import { socketInit } from './socket-manage/socket-init';
 window._ = lodash;
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 import 'bootstrap/dist/css/bootstrap.css';
 
 socketInit(store);

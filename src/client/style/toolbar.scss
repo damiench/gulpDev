@@ -4,7 +4,15 @@
     // minus height of header and top-bar
     max-height: calc(100vh - 100px);
     overflow-y: scroll;
+    border-right: 4px solid #bdbcbc;
     width: 20%;
+
+    .order {
+        transition: background 0.3s;
+        &:hover {
+            background-color: rgba(240, 52, 112, 0.5);
+        }
+    }
 }
 
 
@@ -37,7 +45,7 @@
     max-height: 50px;
     color: #ffffff;
     background-color: #bdbcbc !important;
-
+    border-color: #bdbcbc !important;
     .text {
         margin: 15px;
         font-size: 16px;

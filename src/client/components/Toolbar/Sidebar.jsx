@@ -7,7 +7,7 @@ export default class Toolbar extends React.Component {
 
     render() {
         return (
-            <Paper className='toolbar-left pull-left' zDepth={2}>
+            <Paper className='toolbar-left pull-left' zDepth={0}>
                 <SidebarContent orders={testData}/>
             </Paper>
         );

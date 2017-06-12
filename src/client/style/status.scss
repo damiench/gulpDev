@@ -1,0 +1,56 @@
+.status-workzone{
+    display: flex;
+    justify-content: center;
+    color: #375752;
+    font-size: 18px;
+    .circle {
+        margin: 10px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+        background-color: #bdbcbc;
+        width: 100px;
+        height: 100px;
+
+        &.ready {
+            background-color: rgba(240, 52, 112, 0.5);
+        }
+    }
+
+
+    .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .line {
+            background-color: #bdbcbc;
+            position: relative;
+            width: 150px;
+            opacity: 1;
+            height: 5px;
+            left: 20px;
+        }
+
+        .head {
+            position: relative;
+            float: right;
+            display: inline-block;
+            transform: rotate(45deg);
+            width: 40px;
+            right: 25px;
+            height: 40px;
+            border-top: 5px solid #bdbcbc;
+            border-right: 5px solid #bdbcbc;
+        }
+
+        &.ready {
+            .line { background-color: rgba(240, 52, 112, 0.5); }
+            .head { border-color: rgba(240, 52, 112, 0.5); }
+        }
+    }
+
+}

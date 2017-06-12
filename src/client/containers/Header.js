@@ -1,10 +1,10 @@
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 
-const getAuthStateToProps = (state, ownProps) => {
+const getStateToProps = (state, ownProps) => {
 	return {
 		authorized: state.authorized
 	};
 };
 
-export default connect(getAuthStateToProps)(Header);
+export default connect(getStateToProps)(Header);

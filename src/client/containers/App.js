@@ -1,10 +1,10 @@
 import App from '../components/App';
 import { connect } from 'react-redux';
 
-const getAuthStateToProps = (state, ownProps) => {
+const getStateToProps = (state, ownProps) => {
 	return {
-		authorized: state.authorized
+		// authorized: state.authorized
 	};
 };
 
-export default connect(getAuthStateToProps)(App);
+export default connect(getStateToProps)(App);

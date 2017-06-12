@@ -1,0 +1,72 @@
+.workzone {
+    margin-top: 100px !important;
+    max-height: calc(100vh - 100px);
+    overflow-y: scroll;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    .goods-table {
+        table {
+            table-layout: auto !important;
+
+            thead {
+                th {
+                    background-color: #eee !important;
+                    font-size: 17px !important;
+                    color: #375752 !important;
+                }
+            }
+            tbody {
+
+                tr:nth-child(odd)  {
+                    td {
+                        background-color: #efebeb !important;
+                    }
+                }
+
+                td {
+                    font-size: 14px !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    border-right: 4px solid #bdbcbc !important;
+                }
+            }
+
+            thead {
+                border-bottom: 4px solid #bdbcbc !important;
+            }
+        }
+    }
+
+    .controls {
+        .absolute-button {
+            position: fixed !important;
+            bottom: 20px;
+            border-radius: 7px !important;
+            padding: 0px 5px!important;
+            right: 100px;
+            min-height: 42px !important;
+            min-width: 240px !important;
+            background-color: #f03470 !important;
+        }
+
+        .select-vendor {
+            margin-top: 50px;
+            color: #375752 !important;
+
+            .form-group {
+                display: flex;
+                margin-left: 50%;
+
+                .text {
+                    font-size: 18px;
+                    padding: 5px;
+                }
+
+                .vendors {
+                    max-width: 300px;
+
+                }
+            }
+        }
+    }
+}
